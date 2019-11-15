@@ -1,3 +1,6 @@
+import copy
+
+
 def main():
     max = [
         [7, 5, 3],
@@ -21,7 +24,17 @@ def main():
         [4, 3, 1]
     ]
     available = [3, 3, 2]
-    banker(max, alloc, need, available, )
+    requestList = [3, 3, 0]
+    banker(copy.copy(max), copy.copy(alloc), copy.copy(need), copy.copy(available))
+    request(0, requestList, alloc, need, available)
+    banker(copy.copy(max), copy.copy(alloc), copy.copy(need), copy.copy(available))
+
+
+def request(pid, requestList, alloc, need, available):
+    for i in range(len(alloc[pid])):
+        alloc[pid][i] += requestList[i]
+        need[pid][i] -= requestList[i]
+        available[i] -= requestList[i]
 
 
 def banker(max, alloc, need, available):

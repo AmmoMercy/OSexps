@@ -1,13 +1,21 @@
 import copy
-
-
 def main():
-    memory = [16, 16, 8, 32, 64, 32, 8, 16, 64]
-    processNeed = [7, 18, 9, 20, 35, 8, ]
-    firstPartion(copy.copy(memory), processNeed)
-    cycleFirstPartion(copy.copy(memory), processNeed)
-    bestPartition(copy.copy(memory), processNeed)
-    worstPartition(copy.copy(memory), processNeed)
+    while (True):
+        print("==========================动态分区==========================")
+        choose = int(input("选择算法\n1-首次适应\n2-循环首次适应\n3-最佳适应\n4-最坏适应\n"))
+        # memory = [16, 16, 8, 32, 64, 32, 8, 16, 64]
+        # processNeed = [7, 18, 9, 20, 35, 8, ]
+        memory = [int(i) for i in input("请输入内存空间\n").split()]
+        processNeed = [int(i) for i in input("请输入进程需求\n").split()]
+        print("分区情况如下\n")
+        if choose == 1:
+            firstPartion(copy.copy(memory), processNeed)
+        elif choose == 2:
+            cycleFirstPartion(copy.copy(memory), processNeed)
+        elif choose == 3:
+            bestPartition(copy.copy(memory), processNeed)
+        elif choose == 4:
+            worstPartition(copy.copy(memory), processNeed)
 
 
 def firstPartion(memory, processNeed):

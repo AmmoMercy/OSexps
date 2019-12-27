@@ -1,9 +1,20 @@
 def main():
-    arrivalTime = [0, 1, 2, 3, 4]
-    serviceTime = [4, 3, 5, 2, 4]
-    FCFS(arrivalTime, serviceTime)
-    SJF(arrivalTime, serviceTime)
-    print()
+    while (True):
+        choose = input("选择算法\n1-FCFS\n2-SJF\n")
+        if choose == "1" or choose == "2":
+            break
+        else:
+            print("重新输入")
+    # arrivalTimeStr = input("请输入到达时间数组\n")
+    # arrivalTime = [0, 1, 2, 3, 4]
+    arrivalTime = [int(n) for n in input("请输入到达时间数组:\n").split()]
+    serviceTimeStr = input("请输入服务时间数组:\n")
+    serviceTime = [int(n) for n in serviceTimeStr.split()]
+    # serviceTime = [4, 3, 5, 2, 4]
+    if choose == '1':
+        FCFS(arrivalTime, serviceTime)
+    elif choose == '2':
+        SJF(arrivalTime, serviceTime)
 
 
 def FCFS(arrivalTime, serviceTime):
@@ -20,20 +31,18 @@ def FCFS(arrivalTime, serviceTime):
         else:
             print("waitforjobs")
             currentTime += 1
-    print("FCFS")
     sumWholeTime = 0
     sumWeightWholeTime = 0
     for i in wholeTime:
         sumWholeTime += i
     for i in weightWholeTime:
         sumWeightWholeTime += i
+    print("结束时间:", exitTime)
+    print("周转时间:", wholeTime)
+    print("带权周转时间:", weightWholeTime)
+    print("平均周转时间:", sumWholeTime / len(arrivalTime))
+    print("平均带权周转时间:", sumWeightWholeTime / len(arrivalTime))
 
-    print("sjf")
-    print("FINISH TIMES ", exitTime)
-    print("WHOLE TIMES ", wholeTime)
-    print("WEIGHT WHOLE TIMES", weightWholeTime)
-    print("AVG WHOLE TIME", sumWholeTime / len(arrivalTime))
-    print("AVG WEIGHT WHOLE TIME", sumWeightWholeTime / len(arrivalTime))
 
 def SJF(arrivalTime, serviceTime):
     currentTime = 0
@@ -56,12 +65,11 @@ def SJF(arrivalTime, serviceTime):
     for i in weightWholeTime:
         sumWeightWholeTime += i
 
-    print("SJF")
-    print("FINISH TIMES ", exitTime)
-    print("WHOLE TIMES ", wholeTime)
-    print("WEIGHT WHOLE TIMES", weightWholeTime)
-    print("AVG WHOLE TIME", sumWholeTime / len(arrivalTime))
-    print("AVG WEIGHT WHOLE TIME", sumWeightWholeTime / len(arrivalTime))
+    print("结束时间:", exitTime)
+    print("周转时间:", wholeTime)
+    print("带权周转时间:", weightWholeTime)
+    print("平均周转时间:", sumWholeTime / len(arrivalTime))
+    print("平均带权周转时间:", sumWeightWholeTime / len(arrivalTime))
 
 
 def shortJobID(status, arrivalTime, serviceTime, currentTime):

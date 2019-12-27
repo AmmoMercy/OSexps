@@ -3,13 +3,23 @@ import copy
 
 
 def main():
-    jobs = [{"name": "A", "arrivalTime": 0, "serviceTime": 4},
-            {"name": "B", "arrivalTime": 1, "serviceTime": 3},
-            {"name": "C", "arrivalTime": 2, "serviceTime": 5},
-            {"name": "D", "arrivalTime": 3, "serviceTime": 2},
-            {"name": "E", "arrivalTime": 4, "serviceTime": 4}, ]
-    RR(jobs, 1)
-    RR(jobs, 4)
+    while True:
+        print("==========================时间片轮转调度==========================")
+        # jobs = [{"name": "A", "arrivalTime": 0, "serviceTime": 4},
+        #         {"name": "B", "arrivalTime": 1, "serviceTime": 3},
+        #         {"name": "C", "arrivalTime": 2, "serviceTime": 5},
+        #         {"name": "D", "arrivalTime": 3, "serviceTime": 2},
+        #         {"name": "E", "arrivalTime": 4, "serviceTime": 4}, ]
+        jobs = [{} for i in range(int(input("请输入任务数量:\n")))]
+        nameArr = [i for i in input("请输入任务名称:\n").split()]
+        arrivalTimeArr = [int(i) for i in input("请输入到达时间:\n").split()]
+        serviceTimeArr = [int(i) for i in input("请输入服务时间:\n").split()]
+        for i in range(len(nameArr)):
+            jobs[i]["name"] = nameArr[i]
+            jobs[i]["arrivalTime"] = arrivalTimeArr[i]
+            jobs[i]["serviceTime"] = serviceTimeArr[i]
+        q = int(input("请输入时间片大小:\n"))
+        RR(jobs, q)
 
 
 def RR(_job, q):
@@ -30,7 +40,6 @@ def RR(_job, q):
                 jobQueue.put(currentJob)
             currentJob = jobQueue.get()
 
-        print(jobQueue)
         currentJob["serviceTime"] -= 1
         currentTime += 1
         round += 1

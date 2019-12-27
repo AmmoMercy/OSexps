@@ -3,11 +3,18 @@ import copy
 
 
 def main():
-    pageNum = 3
-    pageOrder = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
-    Optimal(copy.deepcopy(pageNum), copy.deepcopy(pageOrder))
-    FIFO(copy.deepcopy(pageNum), copy.deepcopy(pageOrder))
-    LRU(copy.deepcopy(pageNum), copy.deepcopy(pageOrder))
+    while(True):
+        print("==========================虚拟内存调度==========================")
+        choose = int(input("请选择调页算法:\n1-FIFO \n2-OPI\n3-LRU\n"))
+        pageNum = int(input("请输入页面个数:\n"))
+        #pageOrder = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
+        pageOrder = [int(i) for i in input("请输入页面序号序列:\n").split()]
+        if choose==1:
+            FIFO(copy.deepcopy(pageNum), copy.deepcopy(pageOrder))
+        elif choose==2:
+            Optimal(copy.deepcopy(pageNum), copy.deepcopy(pageOrder))
+        elif choose==3:
+            LRU(copy.deepcopy(pageNum), copy.deepcopy(pageOrder))
 
 
 def Optimal(pageNum, pageOrder):
